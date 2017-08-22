@@ -38,4 +38,27 @@ export class AppUser {
       {}
       );
   }
+  
+  delete(id, token) {
+    return this.http.delete(
+      this.baseUrl + this.path + '/' + id + 
+      '?access_token=' + token
+    );
+  }
+  
+  resetPassword(token, email) {
+    return this.http.post(
+      this.baseUrl + this.path + '/?access_token=' + token,
+      email
+    );
+  }
+  
+  changeAccount(id, token, userData) {
+    return this.http.patch(
+      this.baseUrl + this.path + '/' + id +
+      '?access_token=' + token,
+      userData
+    );
+  }
+  
 }

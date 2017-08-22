@@ -5,11 +5,11 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AppUser } from '../../providers/app-user';
 
 @Component({
-  selector: 'manage-account-modal',
-  templateUrl: 'manage-account.html',
+  selector: 'password-reset-modal',
+  templateUrl: 'password-reset.html',
 })
-export class ManageAccountModal {
-  private accountChangeForm : FormGroup;
+export class PasswordResetModal {
+  private resetRequestForm : FormGroup;
   user: any = {}
   alertTitle: string
   alertSubtitle: string
@@ -21,16 +21,13 @@ export class ManageAccountModal {
       private formBuilder: FormBuilder,
       private alertCtrl: AlertController,
       private appUser: AppUser) {
-        this.accountChangeForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            age: [''],
-            gender: ['', Validators.required]
+        this.resetRequestForm = this.formBuilder.group({
+            email: ['', Validators.required]
         });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BeAnOrganizationModal');
+    console.log('ionViewDidLoad PasswordResetModal');
   }
   
   dismiss() {
@@ -46,19 +43,17 @@ export class ManageAccountModal {
     alert.present();
   }
   
-  accountChange(form) {
-    console.log(this.accountChangeForm.value)
+  passwordReset(form) {
+    console.log(this.resetRequestForm.value)
     if(form.invalid) {
       this.alertTitle = "Invalid Form";
       this.alertSubtitle = "Please fill in all required fields.";
       return this.showAlert();
     }
     
-    //successfull registration
-    console.log(this.user);
-    this.appUser.changeAccount(window.localStorage.getItem('id'), 
-        window.localStorage.getItem('token'), 
-        this.accountChangeForm.value)
+    //successfull password change
+    this.appUser.resetPassword(window.localStorage.getItem('token'), 
+        this.resetRequestForm.value)
       .map(res => res.json())
       .subscribe(res => {
         this.viewCtrl.dismiss();
@@ -70,11 +65,6 @@ export class ManageAccountModal {
           this.alertSubtitle = "Not Found.";
           return this.showAlert();
           
-        } else if (error.status === 422) {
-          this.alertTitle = "422";
-          this.alertSubtitle = "Invalid email address or email is already taken";
-          return this.showAlert();
-          
         } else if (error.status === 500) {
           this.alertTitle = "500";
           this.alertSubtitle = "Server is currently offline, please try again in a few minutes.";
@@ -82,5 +72,6 @@ export class ManageAccountModal {
         }    
       });
   }
-
+  
 }
+  

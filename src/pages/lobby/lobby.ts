@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, NavParams, ViewController } from 'ionic-angular';
+import { ModalController, NavController, NavParams, ViewController, MenuController } from 'ionic-angular';
 
 import { HistoryPage } from '../history/history';
 import { QuestionPage } from '../question/question';
-
 
 import { ForWorkModal } from '../../modals/for-work-modal/for-work-modal';
 import { BeAnOrganizationModal } from '../../modals/be-an-organization/be-an-organization';
@@ -29,6 +28,7 @@ export class LobbyPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public modalCtrl: ModalController, 
+    public menuCtrl: MenuController,
     viewCtrl: ViewController) {
       this.testType = "personal";
       this.organizationName = "SoftStack Factory";
@@ -67,4 +67,5 @@ export class LobbyPage {
     let becomeOrgModal = this.modalCtrl.create(BeAnOrganizationModal);
     becomeOrgModal.present();
   }
+ 
 }
