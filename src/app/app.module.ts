@@ -24,7 +24,7 @@ import { LobbyOrganizationPage } from '../pages/lobby-organization/lobby-organiz
 //Providers
 import { QuestionsProvider } from '../providers/questions/questions';
 import { TestHistoryProvider } from '../providers/test-history/test-history'
-import { AppUser } from '../providers/app-user';
+import { AppUserProvider } from '../providers/app-user/app-user';
 import { AnswersProvider } from '../providers/answers/answers';
 import { ResultsProvider } from '../providers/results/results';
 
@@ -36,18 +36,18 @@ import { RegistrationComponent } from '../components/registration/registration';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { SearchListComponent } from '../components/search-list/search-list';
 import { MiniGraphComponent } from '../components/mini-graph/mini-graph';
-import { EulaComponent } from '../components/eula/eula';
 import { TestSelectionComponent } from '../components/test-selection/test-selection'
 import { IpiptestlistComponent } from '../components/ipiptestlist/ipiptestlist';
 import { LogoutComponent } from '../components/logout/logout';
 import { ManageAccountModal } from '../modals/manage-account/manage-account';
 import { HomeComponent } from '../components/home/home';
 import { OrgSearchComponent } from '../components/org-search/org-search';
+import { RegErrorsComponent } from '../components/reg-errors/reg-errors';
 
 //Modals
 import { ForWorkModal } from '../modals/for-work-modal/for-work-modal';
 import { BeAnOrganizationModal } from '../modals/be-an-organization/be-an-organization';
-
+import { EulaModal } from '../modals/eula/eula';
 
 
 
@@ -73,7 +73,7 @@ let injections: any[] = [
     SearchListComponent,
     ProgressBarComponent,
     MiniGraphComponent,
-    EulaComponent,
+    EulaModal,
     TestSelectionComponent,
     ForWorkModal,
     BeAnOrganizationModal,
@@ -83,7 +83,8 @@ let injections: any[] = [
     LogoutComponent,
     ManageAccountModal,
     HomeComponent,
-    OrgSearchComponent
+    OrgSearchComponent,
+    RegErrorsComponent
     ]
 
 @NgModule({
@@ -101,7 +102,7 @@ let injections: any[] = [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QuestionsProvider,
     TestHistoryProvider,
-    AppUser,
+    AppUserProvider,
     AnswersProvider,
     ResultsProvider
   ]
