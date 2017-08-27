@@ -21,9 +21,6 @@ export class ResultsProvider {
     return this.http.post(this.baseUrl + this.path, testTaken).map(res => res.json());
   }
 
-
-
-
   // //Retrieve test results with access token
   // getTestResults(token, userId){
   //   return this.http.get(this.baseUrl + this.path + 
