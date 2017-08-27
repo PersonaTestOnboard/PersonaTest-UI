@@ -30,7 +30,7 @@
     <div *ngSwitchCase="'personal'" id="personalsegment">
           <h3>Hello {{ this.userName }}</h3>
            <div class="testbuttons">
-             <button ion-button block (click)="forPlay()" class="button">Take a Test</button>
+             <button ion-button block (click)="forPlay()" (click)="startTest()" class="button">Take a Test</button>
              <button ion-button block outline (click)="showResults()" class="button2">View Results</button>
           </div>
     </div>

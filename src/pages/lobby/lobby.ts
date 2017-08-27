@@ -8,6 +8,7 @@ import { QuestionPage } from '../question/question';
 import { ForWorkModal } from '../../modals/for-work-modal/for-work-modal';
 import { BeAnOrganizationModal } from '../../modals/be-an-organization/be-an-organization';
 import { ManageAccountModal } from '../../modals/manage-account/manage-account';
+import { ResultsProvider } from '../../providers/results/results';
 
 /**
  * Generated class for the LobbyPage page.
@@ -20,15 +21,17 @@ import { ManageAccountModal } from '../../modals/manage-account/manage-account';
   selector: 'page-lobby',
   templateUrl: 'lobby.html',
 })
+
 export class LobbyPage {
   testType: string
   organizationName: string
   userName: string
-  
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    public modalCtrl: ModalController, 
+    public modalCtrl: ModalController,
+    private resultsProvider: ResultsProvider,
     viewCtrl: ViewController) {
       this.testType = "personal";
       this.organizationName = "SoftStack Factory";
@@ -67,4 +70,27 @@ export class LobbyPage {
     let becomeOrgModal = this.modalCtrl.create(BeAnOrganizationModal);
     becomeOrgModal.present();
   }
+  
+  startTest(){
+    let testTaken = {
+    userId: "userId", 
+    date: new Date(),
+    extraversion: 0,
+    agreeableness: 0,
+    conscientiousness: 0,
+    emotionalStability: 0,
+    intellect: 0,
+    }
+    console.log("new test taken", testTaken);
+    
+    this.resultsProvider.initializeTest(testTaken).subscribe(
+      testTaken => {
+        console.log("Initialized Test");
+      }, error => {
+        console.log("error");
+      }
+    )
+  } 
+  
 }
+

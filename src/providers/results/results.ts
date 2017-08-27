@@ -11,11 +11,18 @@ export class ResultsProvider {
   
     //Strongloop API Explorer's request URL
   baseUrl: string = URL;
-  path: string = "/Answers";
+  path: string = "/TestTaken";
   
   constructor(public http: Http) {
     console.log('Hello ResultsProvider Provider');
   }
+
+  initializeTest(testTaken) {
+    return this.http.post(this.baseUrl + this.path, testTaken).map(res => res.json());
+  }
+
+
+
 
   // //Retrieve test results with access token
   // getTestResults(token, userId){
